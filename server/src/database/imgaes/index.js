@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
-const imageSchema = new mongoose.Schema({
+const ImageSchema = new mongoose.Schema({
 images:[
     {
         location:{
             type:String,
             required:true
-        }
+        }  
     }
 ]
 },{
     timestamps:true
 });
 
-export const imageModel = mongoose.model("images", imageSchema);
+export const ImageModel = mongoose.model("Images", ImageSchema);

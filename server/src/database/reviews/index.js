@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const reviewSchema = new mongoose.Schema(
+const ReviewSchema = new mongoose.Schema(
     {
         food:{type:mongoose.Types.ObjectId, ref:"foods"},
-        restraurant:{type:mongoose.Types.ObjectId , ref:"restraurants"},
+        restaurant:{type:mongoose.Types.ObjectId , ref:"restaurants"},
         user:{type:mongoose.Types.ObjectId, ref:"users"},
         rating:{type:Number, required:true},
         reviewText:{type:String, required:true},
-        isRestraurantReview:Boolean,
+        isrestaurantReview:Boolean,
         isFoodReview:Boolean,
         photos:{
             type: mongoose.Types.ObjectId,
@@ -16,4 +16,4 @@ const reviewSchema = new mongoose.Schema(
     }
 )
 
-export const reviewModel = mongoose.model("reviews" , reviewSchema)
+export const ReviewModel = mongoose.model("Reviews" , ReviewSchema)

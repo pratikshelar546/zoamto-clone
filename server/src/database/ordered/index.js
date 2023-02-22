@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const orderSchema = new mongoose.Schema(
+const OrderSchema = new mongoose.Schema(
     {
         users: {
             type: mongoose.Types.ObjectId,
@@ -33,7 +33,7 @@ const orderSchema = new mongoose.Schema(
                             required: true,
                         },
                         promo: { type: Number, required: true },
-                        tax: { type: number, required: true },
+                        tax: { type: Number, required: true },
                         razorpay_id: { type: String, required: true },
                     },
                 ],
@@ -45,4 +45,4 @@ const orderSchema = new mongoose.Schema(
     }
 );
 
-export const orderModel = mongoose.model("order", orderSchema);
+export const OrderModel = mongoose.model("Order", OrderSchema);

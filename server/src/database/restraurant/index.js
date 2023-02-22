@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const restaurantSchema = new mongoose.Schema(
+const RestaurantSchema = new mongoose.Schema(
     {
         name:{
             type:String,
@@ -19,7 +19,7 @@ const restaurantSchema = new mongoose.Schema(
             required:true
         },
         cuisine:[String],
-        restaurantTiming:Number,
+        restaurantTiming:String,
         contactNumber: Number,
         website:String,
         popularDishes:[String],
@@ -48,4 +48,4 @@ const restaurantSchema = new mongoose.Schema(
         timestamps: true
     })
 
-export const restaurantModel = mongoose.model("restaurants", restaurantSchema);
+export const RestaurantModel = mongoose.model("Restaurants", RestaurantSchema);

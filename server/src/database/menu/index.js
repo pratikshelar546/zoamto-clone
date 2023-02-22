@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const menuSchema = new mongoose.Schema(
+const MenuSchema = new mongoose.Schema(
   {
     menu: [
       {
@@ -29,4 +29,4 @@ const menuSchema = new mongoose.Schema(
   }
 );
 
-export const menuModel = mongoose.model("menus", menuSchema);
+export const MenuModel = mongoose.model("Menus", MenuSchema);
