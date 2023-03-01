@@ -3,7 +3,7 @@ import passport from "passport";
 import { UserModel } from "../../database/allModels";
 import {
   validationSignin,
-  validationSignup,
+  
 } from "../../validation/auth.validation";
 const Router = express.Router();
 
@@ -11,8 +11,10 @@ Router.post("/signup", async (req, res) => {
   try {
     console.log("helo");
     // await validationSignup(req.body.data);
-    await UserModel.findByEmailAndPhone(req.body.data);
-    const newUser = await UserModel.create(req.body.data);
+    // await UserModel.findByEmailAndPhone(req.body);
+    // console.log(UserModel);
+    const newUser = await UserModel.create(req.body);
+    console.log(newUser);
     const token = newUser.genrateJwtToken();
     return res.status(200).json({ token, status: "success" });
   } catch (error) {
@@ -22,8 +24,8 @@ Router.post("/signup", async (req, res) => {
 
 Router.post("/signin", async (req, res) => {
   try {
-    await validationSignin(req.body.data);
-    const user = await UserModel.findByEmailAndPassword(req.body.data);
+    await validationSignin(req.body);
+    const user = await UserModel.findByEmailAndPassword(req.body);
     const token = await user.genrateJwtToken();
     return res.status(200).json({ user, token, status: "success" });
   } catch (error) {
