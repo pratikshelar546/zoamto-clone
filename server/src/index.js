@@ -12,7 +12,8 @@ import Food from "./api/foods"
 import Order from "./api/order"
 import Review from "./api/review"
 import Restraurant from "./api/restaurant"
-
+// const cors=require("cors");
+import cors from "cors";
 dotenv.config();
 
 const zomato = express();
@@ -28,6 +29,15 @@ zomato.get("/", (req, res) => {
     message: "server is running..",
   });
 });
+
+
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+
+zomato.use(cors(corsOptions));
 
 // auth/signup
 

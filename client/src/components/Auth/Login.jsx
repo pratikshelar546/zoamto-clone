@@ -2,9 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../redux/reducers/Auth/authAction";
-const Signin = ({ isOpen, setIsOpen }) => {
-  
+const Login = ({isOpen,setIsOpen}) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -22,7 +20,7 @@ const Signin = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
 
   const submit = async () => {
-    await dispatch(signIn(userData));
+    // await dispatch(logIn(userData));
     // await dispatch(getMySelf());
     closeModal();
     setUserData({ email: "", password: "", fullName: "" });
@@ -72,18 +70,7 @@ const Signin = ({ isOpen, setIsOpen }) => {
                     </button>
 
                     <form className="flex flex-col gap-2">
-                      <div className="w-full flex flex-col gap-2">
-                        <label htmlFor="fullName">Full Name</label>
-                        <input
-                          type="text"
-                          id="fullName"
-                          value={userData.fullName}
-                          onChange={handleChange}
-                          placeholder="John Doe"
-                          className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:border-zomato-400"
-                          required
-                        />
-                      </div>
+                    
                       <div className="w-full flex flex-col gap-2">
                         <label htmlFor="email">Email</label>
                         <input
@@ -122,6 +109,6 @@ const Signin = ({ isOpen, setIsOpen }) => {
       </Transition>
     </>
   );
-};
+}
 
-export default Signin;
+export default Login

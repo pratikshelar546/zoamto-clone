@@ -13,7 +13,10 @@ var _foods = _interopRequireDefault(require("./api/foods"));
 var _order = _interopRequireDefault(require("./api/order"));
 var _review = _interopRequireDefault(require("./api/review"));
 var _restaurant = _interopRequireDefault(require("./api/restaurant"));
+var _cors = _interopRequireDefault(require("cors"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// const cors=require("cors");
+
 _dotenv.default.config();
 const zomato = (0, _express.default)();
 (0, _route.default)(_passport.default);
@@ -29,6 +32,13 @@ zomato.get("/", (req, res) => {
     message: "server is running.."
   });
 });
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  //access-control-allow-credentials:true
+  optionSuccessStatus: 200
+};
+zomato.use((0, _cors.default)(corsOptions));
 
 // auth/signup
 

@@ -10,7 +10,7 @@ import OrderOnline from "./components/Restaurant/OrderOnline";
 import Review from './components/Restaurant/Review';
 import Photos from "./components/Restaurant/Photos";
 import GoogleAuth from "./pages/GoogleAuth"
-
+ 
 function App() {
   return (
    <>
