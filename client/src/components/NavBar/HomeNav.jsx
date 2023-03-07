@@ -19,7 +19,7 @@ const LgNav = ({ user, signIn, logIn }) => {
   return (
     <div className="h-full hidden lg:flex">
       <section className="w-full min-h-1/4 bg-section-bg bg-white bg-cover bg-center px-24">
-        <header className="flex text-white items-center justify-between h-18 px-4 py-6">
+        <header className="flex text-white items-center justify-between h-16 px-4 py-6">
           <Link href="/" className="text-2xl font-light decoration-none ">
             get the app
           </Link>
@@ -57,7 +57,7 @@ const LgNav = ({ user, signIn, logIn }) => {
           <FiMapPin size={"2.5em"} />
           <input
             type="text"
-            placeholder="Mumbai"
+            placeholder="Mumbai" 
             className="p-1 outline-none text-lg"
           />
           <RiArrowDropDownLine size={"2.5em"} />

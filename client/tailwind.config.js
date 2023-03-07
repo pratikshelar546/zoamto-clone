@@ -25,6 +25,13 @@ module.exports = {
           900: "#1a0002",
         },
       },
+      transitionTimingFunction:{
+        sec:{'tra':'cubic-bezier(0.45, 0.05, 0.55, 0.95)'}
+       
+      },
+      fontFamily:{
+        "zomato":"Okra, Helvetica, sans-serif",
+      }
     },
   },
   plugins: [],

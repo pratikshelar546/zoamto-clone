@@ -1,8 +1,16 @@
 import React from 'react'
+import RestroNav from '../components/NavBar/RestroNav'
+import FiltersButton from '../components/Restaurant/FiltersButton'
+import Tabs from '../components/Restaurant/Tab'
 
-const RestaurantLayout =(component)=> ({...props}) => {
+const RestaurantLayout =(Component)=> ({...props}) => {
   return (
-    <div>RestaurantLayout</div>
+   <>
+   <RestroNav/>
+   <Tabs {...props} />
+   {/* <FiltersButton/> */}
+   <Component {...props}/>
+   </>
   )
 }
 

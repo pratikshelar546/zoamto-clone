@@ -76,19 +76,19 @@ const Signin = ({ isOpen, setIsOpen }) => {
                         <label htmlFor="fullName">Full Name</label>
                         <input
                           type="text"
-                          id="fullName"
+                          id="fullName" required
                           value={userData.fullName}
                           onChange={handleChange}
                           placeholder="John Doe"
                           className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:border-zomato-400"
-                          required
+                         
                         />
                       </div>
                       <div className="w-full flex flex-col gap-2">
                         <label htmlFor="email">Email</label>
                         <input
                           type="text"
-                          id="email"
+                          id="email" required
                           value={userData.email}
                           onChange={handleChange}
                           placeholder="user@email.com"
@@ -99,7 +99,7 @@ const Signin = ({ isOpen, setIsOpen }) => {
                         <label htmlFor="password">Password</label>
                         <input
                           type="password"
-                          id="password"
+                          id="password" required
                           value={userData.password}
                           onChange={handleChange}
                           placeholder="*********"

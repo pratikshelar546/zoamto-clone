@@ -1,17 +1,27 @@
 import React from 'react'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+
 import "./style.css"
 
-const weOffer = () => {
+
+export const WeOffer = () => {
+ const[index,setIndex] = useState("0");
+  const tab= ()=>{
+ setIndex("1");
+ console.log(index);
+  }
   return (
- <>
+    <>
  <section className="container_we_offer">
-    <div className="we_offer_card">
+    <Link className="we_offer_card" to="/order-online"  onClick={tab}>
       <img className="we_offer_img" src='https://b.zmtcdn.com/webFrontend/e5b8785c257af2a7f354f1addaf37e4e1647364814.jpeg?output-format=webp&fit=around|402:360&crop=402:360;*,*' alt="item 1"/>
       <div className="we_offer_card_title">
         <h2>Order online </h2>
         <p>Stay home and order to your door</p>
       </div>
-    </div>
+    </Link>
     <div className="we_offer_card">
       <img className="we_offer_img" src="https://b.zmtcdn.com/webFrontend/d026b357feb0d63c997549f6398da8cc1647364915.jpeg?output-format=webp&fit=around|402:360&crop=402:360;*,*" alt="item 3"/>
       <div className="we_offer_card_title">
@@ -31,4 +41,6 @@ const weOffer = () => {
   )
 }
 
-export default weOffer
+
+
+export default WeOffer

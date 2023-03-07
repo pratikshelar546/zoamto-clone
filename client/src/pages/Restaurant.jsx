@@ -1,9 +1,10 @@
 import React from 'react'
+import RestaurantLayout from '../layouts/RestaurantLayout'
 
 const Restaurant= () => {
   return (
-    <div>restaurant.pages</div>
+   <></>
   )
 }
 
-export default Restaurant
+export default  RestaurantLayout(Restaurant)
