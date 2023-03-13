@@ -1,6 +1,8 @@
 
 import './App.css';
 import {Routes,Route , Navigate} from "react-router-dom";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import Checkout from "./pages/Checkout";
 import Home from './pages/Home';
 import Restaurant from './pages/Restaurant';

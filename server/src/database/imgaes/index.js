@@ -3,10 +3,14 @@ import mongoose from "mongoose";
 const ImageSchema = new mongoose.Schema({
 images:[
     {
-        location:{
+        name:{
             type:String,
             required:true
-        }  
+        },
+        image:{
+            data:Buffer,
+            ContentType:String
+        }
     }
 ]
 },{

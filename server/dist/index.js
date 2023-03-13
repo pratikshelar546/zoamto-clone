@@ -41,7 +41,7 @@ const corsOptions = {
 zomato.use((0, _cors.default)(corsOptions));
 
 // auth/signup
-
+zomato.use('/uploads', _express.default.static('uploads'));
 zomato.use("/user", _users.default);
 zomato.use("/auth", _auth.default);
 zomato.use("/restaurant", _restaurant.default);

@@ -18,6 +18,10 @@ const RestaurantSchema = new mongoose.Schema(
             type:String,
             required:true
         },
+        images: {
+            type:String,
+            required:true
+        },
         cuisine:[String],
         restaurantTiming:String,
         contactNumber: Number,
@@ -39,10 +43,8 @@ const RestaurantSchema = new mongoose.Schema(
                 ref:"reviews"
             }
         ],
-        photos:{
-            type:mongoose.Types.ObjectId,
-            ref:"images"
-        }
+       
+        
     },
     {
         timestamps: true

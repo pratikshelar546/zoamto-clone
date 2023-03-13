@@ -7,7 +7,7 @@ import { BsSearch } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 
 const FiltersButton = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);

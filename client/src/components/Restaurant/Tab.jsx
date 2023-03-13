@@ -1,8 +1,11 @@
 import React from "react";
 import { Tab } from "@headlessui/react";
-import { Fragment } from "react";
-import WeOffer from "../home/WeOffer";
+
 import FiltersButton from "./FiltersButton";
+import DeliveryCarousel from "./Delivery/DeliveryCarousel";
+import TopBrandCaousel from "./Delivery/TopBrandCaousel";
+import Restraurant from "./Delivery/Restraurant";
+
 
 
 const Tabs = ({index}) => {
@@ -12,10 +15,10 @@ const Tabs = ({index}) => {
       <div className="flex w-full shadow justify-center ">
         {/* <div className="shadow flex"> */}
         <div className="flex border-0  max-w-6xl ml-9 w-full mt-10 h-20">
-            <div className="flex flex-col ">
+            <div className="flex flex-col w-full">
           <Tab.Group selectedIndex={index}>
             <div className="">
-        <Tab.List as="div" className="flex flex-row gap-20 border-b-0 border-gray-400 h-20 ">
+        <Tab.List as="div" className="flex flex-row gap-20  border-gray-400 h-20 ">
          <Tab as="h2" className="flex flex-row text-gray-600 focus:border-b-2 border-zomato-300 h-20  focus:text-zomato-300 outline-none ">
             <div>
               <img
@@ -50,9 +53,12 @@ const Tabs = ({index}) => {
         
         
        </div>
-       <FiltersButton/>
+       
        <Tab.Panels>
-          <Tab.Panel>Content 1</Tab.Panel>
+          <Tab.Panel><FiltersButton/>
+       <DeliveryCarousel/>  
+       <TopBrandCaousel/>  
+       <Restraurant/> </Tab.Panel>
           <Tab.Panel>Content 2</Tab.Panel>
           <Tab.Panel>Content 3</Tab.Panel>
          
