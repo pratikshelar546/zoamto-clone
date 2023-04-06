@@ -5,14 +5,14 @@ import RestaurantCard from '../../RestaurantCard';
 
 
 const Restraurant = (props) => {
-  const [restaurantList,setRestaurantList] = useState([]);
+  const [restaurantList,setRestaurantList] = useState([]);  
   const dispatch = useDispatch();
  
-  const restro = useSelector((state)=>state.restaurants);
+  // const restro = useSelector((state)=>state.restaurants);
 
-  useEffect(()=>{
-    dispatch(getRestaurant())
-  },[])
+  // useEffect(()=>{
+  // setRestaurantList(dispatch(getRestaurant()))
+  // },[])
   // useEffect(() => {
   //   if (reduxState) {
   //     setRestaurantList(reduxState);
@@ -22,19 +22,17 @@ const Restraurant = (props) => {
   //  setRestaurantList(reduxState);
   // }, [reduxState]);
  
-  // useEffect(() => {
-  //   dispatch(getRestaurant()).then((data)=>{
-  //     setRestaurantList((prev)=>({
-  //       ...prev,
-  //       ...data.payload.restaurant
-  //     }))
-  //   })
-  // })
-  
+  useEffect(() => {
+    dispatch(getRestaurant()).then((data)=>{
+      // console.log("data", data);
+      setRestaurantList(Object.values(data.payload));
+    });
+  }, [dispatch]);
+  // console.log("dlis",restaurantList);
+// console.log(restaurantList._id);
+  // console.log("restaurant",dispatch(getRestaurant()));
 
-  console.log("restaurant",restro);
-
-  // const restaurantList =[{
+  // const restaurantLists =[{
   //     _id: "124ksjf435245jv34fg3",
   //     isPro: true,
   //     isOff: true,
@@ -77,16 +75,17 @@ const Restraurant = (props) => {
   //     ],
   //     averageCost: "450",
   //   }]
-    
+
     return (
     <>
     <h1 className='text-xl mt-4 mb-2 md:mt-8 md:text-3xl md:font-semibold'>
     Order food online in Mumbai
     </h1>
-    <div className='w-full justify-center flex max-w-6xl'>
+    <div className='w-full justify-center flex max-w-7xl'>
     <div className='grid gap-0 md:gap-2 md:grid-cols-2 grid-cols-1 lg:grid-cols-3'>
-    {restaurantList.map((restaurant) => (
-          <RestaurantCard {...restaurant} key={restaurant._id} />
+    { restaurantList.map((restaurant) => (
+    
+      <RestaurantCard {...restaurant} key={restaurant._id} />
         ))}
     </div>
     </div>

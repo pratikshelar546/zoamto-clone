@@ -1,21 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { getSpecificRestaurant } from "../../../redux/reducers/Restraurants/RestaurantAction";
 
-const RestaurantCard = (props) => {
+const SliderCard = (props) => {
 // const getSpecificRestro =()=>{
 // console.log(props._id);
 // }
 // console.log(props);
-
+// const click =(e)=>{
+// e.preventDefault();
+// }
   return (
     <>
-      <div className="w-full flex p-4 ">
-        <Link to={`/restaurant/${props._id}/overview`}>
-          <div className="bg-white w-full p-4 h-full rounded-2xl transition duration-500 ease-in-out sm:shadow-md md:shadow-none hover:drop-shadow-lg">
+      <div className="w-full p-2 ">
+        <Link to={`/restaurant/${props._id}/overview`} onClick="histoy.go(0);">
+          <div className="bg-white w-full p-2 h-96 overflow-hidden rounded-2xl transition duration-500 ease-in-out sm:shadow-md md:shadow-none hover:drop-shadow-lg">
             <div className="w-full h-full flex ">
-              <div className="w-80 flex">
-                <div className="flex flex-col gap-2 items-start w-80">
+              <div className="w-full flex">
+                <div className="flex flex-col gap-1 items-start w-72">
                   <div className="relative cursor-pointer bottom-2 w-full h-48">
                     <div className="relative overflow-hidden">
                       <img
@@ -47,9 +53,12 @@ const RestaurantCard = (props) => {
                       <p className="truncate text-ellipsis overflow-hidden w-3/4">
                         {props.popularDishes}
                       </p>
-                      <p className="w-3/4 text-right text-sm">
-                      {props.avrageCost}
+                      <p className="w-3/4 text-right">
+                         {props.avrageCost} 
                       </p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-zomato font-normal text-gray-500">{props.address}</p>
                     </div>
                   </div>
                 </div>
@@ -62,4 +71,4 @@ const RestaurantCard = (props) => {
   );
 };
 
-export default RestaurantCard;
+export default SliderCard;

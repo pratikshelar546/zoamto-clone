@@ -6,7 +6,7 @@ const TopBrandCaouselCard = (props) => {
     <div className='flex flex-col rounded-md w-full justify-center items-center'>
    <div className=''> <div className="w-36 h-auto justify-center ">
           <img
-            className="w-full h-full object-center object-cover justify-center rounded-full"
+            className="w-full h-full object-center object-cover shadow justify-center rounded-full"
             src={props.images}
             alt={props.name}
           />

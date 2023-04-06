@@ -5,18 +5,19 @@ import FiltersButton from "./FiltersButton";
 import DeliveryCarousel from "./Delivery/DeliveryCarousel";
 import TopBrandCaousel from "./Delivery/TopBrandCaousel";
 import Restraurant from "./Delivery/Restraurant";
+import Footer from "../home/Footer";
 
 
 
-const Tabs = ({index}) => {
-  console.log(index);
+const Tabs = () => {
+
   return (
     <>
       <div className="flex w-full shadow justify-center ">
         {/* <div className="shadow flex"> */}
-        <div className="flex border-0  max-w-6xl ml-9 w-full mt-10 h-20">
+        <div className="flex border-0  max-w-7xl ml-9 w-full mt-10 h-20">
             <div className="flex flex-col w-full">
-          <Tab.Group selectedIndex={index}>
+          <Tab.Group >
             <div className="">
         <Tab.List as="div" className="flex flex-row gap-20  border-gray-400 h-20 ">
          <Tab as="h2" className="flex flex-row text-gray-600 focus:border-b-2 border-zomato-300 h-20  focus:text-zomato-300 outline-none ">
@@ -63,6 +64,7 @@ const Tabs = ({index}) => {
           <Tab.Panel>Content 3</Tab.Panel>
          
         </Tab.Panels>
+        <Footer/>
       </Tab.Group>
           </div>
         </div>

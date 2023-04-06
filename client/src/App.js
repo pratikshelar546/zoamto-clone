@@ -6,12 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 import Checkout from "./pages/Checkout";
 import Home from './pages/Home';
 import Restaurant from './pages/Restaurant';
-import Overview from "./components/restroDump/Overview";
-import Menu from "./components/restroDump/Menu";
+
+// import Menu from "./components/restroDump/Menu";
 // import OrderOnline from "./components/Restaurant/OrderOnline";
-import Review from './components/restroDump/Review';
-import Photos from "./components/restroDump/Photos";
+// import Review from './components/restroDump/Review';
+// import Photos from "./components/restroDump/Photos";
 import GoogleAuth from "./pages/GoogleAuth"
+import Overview from './components/RestaurantsOverview/getRestaurant'
 // import weOffer from './components/home/WeOffer';
  
 function App() {
@@ -26,9 +27,9 @@ function App() {
     <Route path='/google/token' element={<GoogleAuth/>} />
     <Route path='/restaurant/:id/overview' element={<Overview/>} />
     <Route path='/order-online' element={<Restaurant/>} />
-    <Route path='/restaurant/:id/review' element={<Review/>} />
-    <Route path='/restaurant/:id/menu' element={<Menu/>} />
-    <Route path='/restaurant/:id/photos' element={<Photos/>} />
+    {/* <Route path='/restaurant/:id/review' element={<Review/>} /> */}
+    {/* <Route path='/restaurant/:id/menu' element={<Menu/>} />
+    <Route path='/restaurant/:id/photos' element={<Photos/>} /> */}
     <Route path='/checkout' element={<Checkout/>} />
 
     <Route path='' element={<Checkout/>} />

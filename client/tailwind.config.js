@@ -25,6 +25,9 @@ module.exports = {
           900: "#1a0002",
         },
       },
+    height :{
+          'height':"33rem"
+      },
       transitionTimingFunction:{
         sec:{'tra':'cubic-bezier(0.45, 0.05, 0.55, 0.95)'}
        

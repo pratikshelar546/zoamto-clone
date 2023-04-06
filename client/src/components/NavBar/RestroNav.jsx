@@ -19,7 +19,7 @@ signIn();
     <>
       <div className="lg:flex hidden h-full">
         <header className="w-full h-20 flex justify-center text-gray-700">
-          <nav className=" flex w-full max-w-6xl">
+          <nav className=" flex w-full max-w-7xl">
             <div className="p-6  flex">
               <img
                 src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
@@ -73,7 +73,7 @@ const MdNav =({user,logIn,signIn})=>{
     <>
       <div className="flex max-sm:hidden lg:hidden h-full">
         <header className="w-full h-20 flex justify-center text-gray-700">
-          <nav className=" flex w-full max-w-6xl">
+          <nav className=" flex w-full max-w-7xl">
             <div className="p-6  flex">
               <img
                 src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
@@ -127,7 +127,7 @@ const SmNav =({user,logIn,signIn})=>{
     <>
       <div className="flex sm:hidden w-full h-full">
         <header className=" h-20 flex text-yellow-700">
-          <nav className=" flex flex-col max-w-6xl">
+          <nav className=" flex flex-col max-w-7xl">
             <div className="flex mx-10 w-full justify-between">
             <div className="p-4 flex">
               <img

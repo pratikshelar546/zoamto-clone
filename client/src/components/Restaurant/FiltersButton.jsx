@@ -19,9 +19,9 @@ const FiltersButton = () => {
     <>
       {/* <hr className="border-2 border-gray-500 max-w-full  w-full"/> */}
       <section>
-        <div className="flex sticky w-full justify-center font-zomato">
-          <div className="max-w-6xl flex p-4 w-full text-gray-400 font-thin">
-            <div className="gap-3 flex">
+        <div className="flex sticky top-0 z-10 w-full justify-center font-zomato">
+          <div className="max-w-7xl relative flex p-4 w-full text-gray-400 font-thin">
+            <div className="gap-3 flex sticky">
               {/* <button className="outline-none border-2 border-gray-300 px-3 py-1 flex h-full justify-center rounded-lg hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                 <GiSettingsKnobs
                   className="rotate-90 justify-centermt mt-1"
@@ -30,7 +30,7 @@ const FiltersButton = () => {
                 Filters
               </button> */}
 
-              <div className="flex items-center justify-center">
+              <div className="flex items-center  justify-center">
                 <button
                   type="button"
                   onClick={openModal}
