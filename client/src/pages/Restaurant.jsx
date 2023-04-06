@@ -1,9 +1,13 @@
 import React from 'react'
+import Tabs from '../components/Restaurant/Tab'
+import RestaurantLayout from '../layouts/RestaurantLayout'
 
-const Restaurant= () => {
+const Restaurant= (props) => {
   return (
-    <div>restaurant.pages</div>
+   <>
+   <Tabs {...props} />
+   </>
   )
 }
 
-export default Restaurant
+export default  RestaurantLayout(Restaurant)

@@ -1,22 +1,20 @@
 import express from "express";
-import passport from "passport";
+import passport, { session } from "passport";
 import { UserModel } from "../../database/allModels";
 import {
   validationSignin,
-  validationSignup
-  
-  
+  validationSignup,
 } from "../../validation/auth.validation";
 const Router = express.Router();
 
 Router.post("/signup", async (req, res) => {
   try {
-    console.log("helo");
+    // console.log("helo");
     await validationSignup(req.body.credentials);
     await UserModel.findByEmailAndPhone(req.body.credentials);
-    console.log(UserModel);
+    // console.log(UserModel);
     const newUser = await UserModel.create(req.body.credentials);
-    console.log(newUser);
+    // console.log(newUser);
     const token = newUser.genrateJwtToken();
     return res.status(200).json({ token, status: "success" });
   } catch (error) {
@@ -42,7 +40,7 @@ Router.get(
   passport.authenticate("google", {
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.email"
     ],
   })
 );
@@ -51,7 +49,10 @@ Router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    return res.status(200).json({ token: req.session.passport.user.token });
+    // return res.status(200).json({ token: req.session.passport.user.token });
+    return res.redirect(
+   "http://localhost:3000/"
+    );
   }
 );
 

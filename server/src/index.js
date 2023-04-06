@@ -1,4 +1,5 @@
 import express from "express";
+
 import dotenv from "dotenv";
 import ConnectDB from "./database/connection";
 import Auth from "./api/auth";
@@ -12,8 +13,10 @@ import Food from "./api/foods"
 import Order from "./api/order"
 import Review from "./api/review"
 import Restraurant from "./api/restaurant"
+import bodyParser from "body-parser";
 // const cors=require("cors");
 import cors from "cors";
+
 dotenv.config();
 
 const zomato = express();
@@ -33,14 +36,18 @@ zomato.get("/", (req, res) => {
 
 const corsOptions ={
   origin:'*', 
-  credentials:true,            //access-control-allow-credentials:true
+  credentials:true,           
   optionSuccessStatus:200,
 }
 
 zomato.use(cors(corsOptions));
 
 // auth/signup
-
+// zomato.use('/uploads',express.static('uploads'))
+// zomato.use(express.urlencoded({ extended: true }));
+// zomato.use(fileUpload())
+zomato.use(bodyParser.json());
+  zomato.use('/uploads',express.static('uploads'));
 zomato.use("/user",User);
 zomato.use("/auth",Auth);
 zomato.use("/restaurant",Restraurant);

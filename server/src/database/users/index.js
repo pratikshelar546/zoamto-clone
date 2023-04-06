@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema(
       required: true 
     },
     email: { type: String, required: true },
-    password: { type: String, required: true },
+    password: { type: String},
     address: [{ details: { type: String }, for: { type: String } }],
     phoneNumber: { type: Number },
   },
@@ -18,11 +18,10 @@ UserSchema.methods.genrateJwtToken = function () {
   return Jwt.sign({ user: this._id.toString() }, "zomatoApp");
 };
 
-UserSchema.statics.findByEmailAndPhone = async ({ email, phoneNumber }) => {
+UserSchema.statics.findByEmailAndPhone = async ({ email }) => {
   const checkUserByEmail = await UserModel.findOne({ email });
-  const checkUserByPhone = await UserModel.findOne({ phoneNumber });
 
-  if (checkUserByEmail || checkUserByPhone) {
+  if (checkUserByEmail ) {
     throw new Error("User Already Exists !!");
   }
 
@@ -30,8 +29,7 @@ UserSchema.statics.findByEmailAndPhone = async ({ email, phoneNumber }) => {
 };
 UserSchema.statics.findByEmailAndPassword = async ({email, password}) => {
   const user = await UserModel.findOne({ email });
-  console.log(user
-    );
+ 
   if (!user) throw new Error("User dose not exist");
 
   //compare password

@@ -1,9 +1,15 @@
 import React from 'react'
+import RestroNav from '../components/NavBar/RestroNav'
 
-const RestaurantLayout =(component)=> ({...props}) => {
+const RestaurantLayout =(Component)=> ({...props}) => {
   return (
-    <div>RestaurantLayout</div>
+   <>
+   <RestroNav/>
+   
+   <Component {...props}/>
+   </>
   )
 }
 
 export default RestaurantLayout
+

@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { FcGoogle } from "react-icons/fc";
+import { logIn } from "../../redux/reducers/Auth/authAction";
 import { useDispatch } from "react-redux";
 const Login = ({isOpen,setIsOpen}) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
-    fullName: "",
   });
 
   const handleChange = (e) => {
@@ -20,14 +20,14 @@ const Login = ({isOpen,setIsOpen}) => {
   const dispatch = useDispatch();
 
   const submit = async () => {
-    // await dispatch(logIn(userData));
+    await dispatch(logIn(userData));
     // await dispatch(getMySelf());
     closeModal();
-    setUserData({ email: "", password: "", fullName: "" });
+    setUserData({ email: "", password: ""});
   };
 
   const googleSignIn = () =>
-    (window.location.href = `${process.env.REACT_APP_CLIENT_URL}auth/google`);
+  (window.location.href = `${process.env.REACT_APP_CLIENT_URL}auth/google`);
 
   return (
     <>
@@ -75,7 +75,7 @@ const Login = ({isOpen,setIsOpen}) => {
                         <label htmlFor="email">Email</label>
                         <input
                           type="text"
-                          id="email"
+                          id="email" required
                           value={userData.email}
                           onChange={handleChange}
                           placeholder="user@email.com"
@@ -86,7 +86,7 @@ const Login = ({isOpen,setIsOpen}) => {
                         <label htmlFor="password">Password</label>
                         <input
                           type="password"
-                          id="password"
+                          id="password" required
                           value={userData.password}
                           onChange={handleChange}
                           placeholder="*********"

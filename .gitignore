@@ -1,6 +1,5 @@
-/server/dist
 /server/node_modules
+/server/dist
 /server/package-lock.json 
 /server/.env
-
- 
+/server/uploads
