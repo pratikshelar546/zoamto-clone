@@ -8,7 +8,7 @@ import privateRouteConfig from "./config/route.config";
 import googleConfig from "./config/google.config";
 import session from "express-session";
 import User from "./api/users"
-
+import Menu from "./api/menu"
 import Food from "./api/foods"
 import Order from "./api/order"
 import Review from "./api/review"
@@ -50,6 +50,7 @@ zomato.use(bodyParser.json());
   zomato.use('/uploads',express.static('uploads'));
 zomato.use("/user",User);
 zomato.use("/auth",Auth);
+zomato.use("/menu",Menu);
 zomato.use("/restaurant",Restraurant);
 zomato.use("/food",Food);
 zomato.use("/order",Order);

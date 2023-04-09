@@ -7,17 +7,17 @@ const Router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,"uploads/");
-  //   if (file.fieldname === "images") {
-  //     cb(null, './uploads/images/')
-  // }
-  // else {
-  //     cb(null, './uploads/menu/');
-  // }
+    cb(null, "uploads/");
+    //   if (file.fieldname === "images") {
+    //     cb(null, './uploads/images/')
+    // }
+    // else {
+    //     cb(null, './uploads/menu/');
+    // }
   },
-  filename: function (req, file, cb) {  
-      cb(null, file.fieldname+Date.now()+path.extname(file.originalname))
-   
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + Date.now() + path.extname(file.originalname));
+
     // const ext =file.originalname.substring(file.originalname.lastIndexOf("."));
     // cb(null, file.fieldname + '-'+ Date.now() +ext);
   },
@@ -35,27 +35,54 @@ const upload = multer({
   },
   fileFilter: fileFilter,
 });
-Router.post("/add", upload.single('images'), async (req, res) => {
+Router.post("/add", upload.single("images"), async (req, res) => {
   try {
-  //   const files =req.files
-const files= req.files
-  //  return res.json({content :req.files.file});
-  if(req.files){
-    files.forEach(pic => {
-      data.append('images', {
-        name: pic.fileName,
-        file: pic.image,
-        type: pic.type,
-    });
-    });
-    // console.log(`files ${req.files}...`);
-    // console.log(files);
-    // console.log("file uploades");
-    // return res.json({data:req.files})
-  }
+    //   const files =req.files
+    const files = req.files;
+    //  return res.json({content :req.files.file});
+    if (req.files) {
+      files.forEach((pic) => {
+        data.append("images", {
+          name: pic.fileName,
+          file: pic.image,
+          type: pic.type,
+        });
+      });
+      // console.log(`files ${req.files}...`);
+      // console.log(files);
+      // console.log("file uploades");
+      // return res.json({data:req.files})
+    }
     // console.log(req.files.length);
-    const { name,address,city,mapLocation,cuisine,restaurantTiming,contactNumber,website,popularDishes,avrageCost,menuImages,menu,} = req.body;
-    const newRestaurant = await RestaurantModel.create({name: name,address: address,city: city,mapLocation: mapLocation,cuisine: cuisine,restaurantTiming: restaurantTiming,contactNumber: contactNumber,website: website,popularDishes: popularDishes,avrageCost: avrageCost,menuImages: menuImages,images:req.file.path,menu:req.files});
+    const {
+      name,
+      address,
+      city,
+      mapLocation,
+      cuisine,
+      restaurantTiming,
+      contactNumber,
+      website,
+      popularDishes,
+      avrageCost,
+      menuImages,
+      menu,
+    } = req.body;
+    const newRestaurant = await RestaurantModel.create({
+      name: name,
+      address: address,
+      city: city,
+      mapLocation: mapLocation,
+      cuisine: cuisine,
+      restaurantTiming: restaurantTiming,
+      contactNumber: contactNumber,
+      website: website,
+      popularDishes: popularDishes,
+      avrageCost: avrageCost,
+      menuImages: menuImages,
+      images: req.file.path,
+      menu: menu,
+    });
 
     return res.json({ retaurant: newRestaurant });
   } catch (error) {
@@ -86,8 +113,8 @@ Router.get("/specific/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
     // console.log(_id);
-    const restaurants = await RestaurantModel.findById(_id);
-
+    const restaurants = await RestaurantModel.findOne({ _id }).populate({ path: "menu", populate: { path: "menu.items",model:"Foods" } });
+console.log(restaurants.menu.items);
     if (!restaurants) {
       return res.json({ error: "restaurant not found" });
     }

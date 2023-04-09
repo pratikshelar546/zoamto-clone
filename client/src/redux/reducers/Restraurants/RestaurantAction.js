@@ -28,7 +28,7 @@ export const getSpecificRestaurant =(_id)=> async(dispatch)=>{
             method :"GET",
             url: `${process.env.REACT_APP_CLIENT_URL}restaurant/specific/${_id}`,
         });
-        // console.log(specificRestaurant.data.restaurants);
+        console.log(specificRestaurant.data.restaurants.menu[0].menu[0].items[0].name);
         return{
             type:GET_SPECIFIC_RESTAURANT,
             payload:specificRestaurant.data.restaurants,

@@ -2,6 +2,18 @@ import express from "express";
 import { FoodModel, UserModel } from "../../database/allModels";
 
 const Router = express.Router();
+// add new food
+Router.post("/add/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const  newFoods  = req.body.items;
+  
+    const foods = await FoodModel.create({ ...newFoods, restaurant: _id });
+    return res.json({ staus: "success", foods });
+  } catch (error) {
+    return res.status(500).json({ status: "faild", error: error.message });
+  }
+});
 
 //get food by id
 
@@ -32,17 +44,16 @@ Router.get("/r/:_id", async (req, res) => {
 // get food by different category  (veg /nonveg)
 
 Router.get("/c/:category", async (req, res) => {
-    try {
-        const { category } = req.params;
-  const foods = await FoodModel.find({  category: {$eq: category }  });
-  if(foods.length === 0){
-   return res.json({message:"this category is not available"})
-  }
-  return res.json({ foods: foods });
-    } catch (error) {
-        return res.status(500).json({status:"faild", error:error.message});
+  try {
+    const { category } = req.params;
+    const foods = await FoodModel.find({ category: { $eq: category } });
+    if (foods.length === 0) {
+      return res.json({ message: "this category is not available" });
     }
-  
+    return res.json({ foods: foods });
+  } catch (error) {
+    return res.status(500).json({ status: "faild", error: error.message });
+  }
 });
 
 export default Router;
