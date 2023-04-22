@@ -47,7 +47,8 @@ zomato.use(cors(corsOptions));
 // zomato.use(express.urlencoded({ extended: true }));
 // zomato.use(fileUpload())
 zomato.use(bodyParser.json());
-  zomato.use('/uploads',express.static('uploads'));
+zomato.use('/uploads',express.static('uploads'));
+  zomato.use('/images',express.static('images'));
 zomato.use("/user",User);
 zomato.use("/auth",Auth);
 zomato.use("/menu",Menu);

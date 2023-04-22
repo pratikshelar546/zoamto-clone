@@ -49,18 +49,18 @@ Router.get("/lists/:_id", async (req, res) => {
   }
 });
 
-// get images of menus
-Router.get("/image/:_id", async (req, res) => {
-  try {
-    const { _id } = req.params;
-    const imagesOfMenu = await MenuModel.findById(_id);
-    if (!imagesOfMenu) {
-      return res.status(404).json({ error: "images of menu card not found" });
-    }
-    return res.json({ iamges: imagesOfMenu });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-});
+// // get images of menus
+// Router.get("/image/:_id", async (req, res) => {
+//   try {
+//     const { _id } = req.params;
+//     const imagesOfMenu = await MenuModel.findById(_id);
+//     if (!imagesOfMenu) {
+//       return res.status(404).json({ error: "images of menu card not found" });
+//     }
+//     return res.json({ iamges: imagesOfMenu });
+//   } catch (error) {
+//     return res.status(500).json({ error: error.message });
+//   }
+// });
 
 export default Router;

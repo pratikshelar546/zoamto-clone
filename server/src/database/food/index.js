@@ -21,9 +21,9 @@ const FoodSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    photos: {
-        type: mongoose.Types.ObjectId,
-        ref: "image"
+    images: {
+        type: String,
+       required:true
     },
     price: {
         type: Number,

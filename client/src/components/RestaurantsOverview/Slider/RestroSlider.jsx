@@ -109,7 +109,7 @@ const RestroSlider = (props) => {
                 //   console.log(restaurant.name);
                 //   // return restaurant
                 // } )
-                cuisines[0] === restaurants.cuisine[0]? <SliderCard {...restaurant} key={restaurant._id}/>:console.log("npt")
+                cuisines[0] === restaurants.cuisine[0]? <SliderCard {...restaurant} key={restaurant._id}/>:<h1>No simillar restaurant found</h1>
               )
               
             })}

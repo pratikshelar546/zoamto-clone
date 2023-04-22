@@ -47,6 +47,7 @@ zomato.use((0, _cors.default)(corsOptions));
 // zomato.use(fileUpload())
 zomato.use(_bodyParser.default.json());
 zomato.use('/uploads', _express.default.static('uploads'));
+zomato.use('/images', _express.default.static('images'));
 zomato.use("/user", _users.default);
 zomato.use("/auth", _auth.default);
 zomato.use("/menu", _menu.default);

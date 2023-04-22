@@ -35,12 +35,12 @@ const RestaurantSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "images",
     },
-    menu: [
+    menu: 
       {
         type: mongoose.Types.ObjectId,
         ref: "Menus",
       },
-    ],
+    
     // items: [
     //   {
     //     type: mongoose.Types.ObjectId,

@@ -113,8 +113,9 @@ Router.get("/specific/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
     // console.log(_id);
-    const restaurants = await RestaurantModel.findOne({ _id }).populate({ path: "menu", populate: { path: "menu.items",model:"Foods" } });
-console.log(restaurants.menu.items);
+    const restaurants = await RestaurantModel.findById(_id );
+  
+console.log(restaurants.menu);
     if (!restaurants) {
       return res.json({ error: "restaurant not found" });
     }

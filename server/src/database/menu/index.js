@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const MenuSchema = new mongoose.Schema(
   {
-    menu: [
+    menu: 
       {
         name: {
           type: String,
@@ -15,14 +15,14 @@ const MenuSchema = new mongoose.Schema(
           },
         ],
       },
-    ],
-    recomandation: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Foods",
-        unique: true,
-      },
-    ],
+    
+    // recomandation: [
+    //   {
+    //     type: mongoose.Types.ObjectId,
+    //     ref: "Foods",
+    //     unique: true,
+    //   },
+    // ],
   },
   {
     timestamps: true,

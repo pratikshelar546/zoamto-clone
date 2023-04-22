@@ -6,9 +6,13 @@ import { BiShare } from "react-icons/bi";
 import { Tab } from "@headlessui/react";
 import Overview from "./Overview";
 import Footer from "../home/Footer";
-import OrderOnline from "./OrderOnline";
+import OrderOnline from "./OnlineOrder/OrderOnline";
+
+
+
 
 const RestaurnatInfo = (props) => {
+
   return (
     <>
       <section className="mt-1 mx-auto relative max-w-7xl">
@@ -230,7 +234,7 @@ const RestaurnatInfo = (props) => {
                       </div>
                     <Tab.Panels>
                       <Tab.Panel><Overview {...props}/></Tab.Panel>
-                      <Tab.Panel><OrderOnline/></Tab.Panel>
+                      <Tab.Panel><OrderOnline{...props}/></Tab.Panel>
                       <Tab.Panel>Content 3</Tab.Panel>
                       <Tab.Panel>Content 4</Tab.Panel>
                       <Tab.Panel>Content 5</Tab.Panel>
