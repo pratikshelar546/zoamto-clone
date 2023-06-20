@@ -2,12 +2,14 @@ import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { FcGoogle } from "react-icons/fc";
 import { logIn } from "../../redux/reducers/Auth/authAction";
-import { useDispatch } from "react-redux";
-const Login = ({isOpen,setIsOpen}) => {
+import { useDispatch, useSelector } from "react-redux";
+import { getMySelf } from "../../redux/reducers/User/UserAction";
+const Login = ({isOpen,setIsOpen },props) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  const [myData,setMyData] = useState();
 
   const handleChange = (e) => {
     setUserData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -16,16 +18,19 @@ const Login = ({isOpen,setIsOpen}) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
   const dispatch = useDispatch();
-
+  const token = localStorage.getItem('zomatoUser')
   const submit = async () => {
     await dispatch(logIn(userData));
-    // await dispatch(getMySelf());
+  const data=  await dispatch(getMySelf());
+  console.log(data.payload);
     closeModal();
+    // console.log(user);
+    // localStorage.setItem('user', JSON.stringify(user));
     setUserData({ email: "", password: ""});
+    
   };
-
+  // const user = useSelector((globalState) => globalState.user);
   const googleSignIn = () =>
   (window.location.href = `${process.env.REACT_APP_CLIENT_URL}auth/google`);
 

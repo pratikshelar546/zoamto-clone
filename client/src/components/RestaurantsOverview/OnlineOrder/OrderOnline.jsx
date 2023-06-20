@@ -7,6 +7,7 @@ import { Link } from "react-scroll";
 import { getMenuList } from "../../../redux/reducers/menu/MenuAction";
 // import { getSpecificRestaurant } from "../../../redux/reducers/Restraurants/RestaurantAction"
 import MenuList from "./MenuList";
+import { getFoodByCategory } from "../../../redux/reducers/food/FoodAction";
 
 const OrderOnline = (props) => {
   //   const [restaurant, setRestaurant] = useState({menu:[]});
@@ -26,13 +27,30 @@ const OrderOnline = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMenuList(menuId)).then((data) => {
-      // console.log(data.payload);
+      // console.log(data.payload?.menu?.menu);
       setMenuList(data.payload?.menu?.menu);
-      // setTimeout(()=>{
-      //   console.log(menuList?.menu?.menu);
-      // },2000)
+      
     });
   }, [dispatch, menuId]);
+  const [checked ,setChecked] = useState(false);
+  const [filterMenu , setFilterMenu] = useState([])
+  // console.log(checked);
+  if(checked){
+    const category = "veg";
+   dispatch(getFoodByCategory(category)).then((newData)=>{
+    // console.log(newData.payload);
+    // setFilterMenu(newData?.payload);
+  })
+  console.log(filterMenu);
+
+  }else{
+    // console.log("notFound");
+  }
+  // console.log(menuList);
+
+  // const changeHandler = ()=>{
+  //   console.log("true");
+  // }
   // console.log(menuList);
   // if (menuList?.menu?.menu?.length > 1) {
 
@@ -100,23 +118,23 @@ const OrderOnline = (props) => {
               <div className="flex flex-col py-3 md:py-0 text-2xl">
                 {menuList?.length > 1
                   ? menuList?.map((data, index) => {
+                    
                       return (
-                        <div
-                          className="flex flex-col py-3 md:py-0 text-2xl"
-                          key={index}
-                        >
+                        <div className="flex flex-col py-3 md:py-0 text-2xl border-r border-gray-400 mr-3" key={index} >
+                
                           <Link
-                            activeClass="text-zomato-500"
+                            activeClass="text-zomato-500 border-r-4 border-zomato-300 "
                             to={data.name}
-                            className="text-gray-700"
+                            className="text-gray-700 p-5"
                             spy={true}
                             smooth={true}
                             duration={250}
                             offset={-275}
-                            style={{ display: "inline-block", margin: "20px" }}
+                            style={{ display: "inline-block" }}
                           >
                             {data.name}({data.items.length})
                           </Link>
+                    
                         </div>
                       );
                     })
@@ -166,15 +184,15 @@ const OrderOnline = (props) => {
                 </div>
               </div>
               <div className="text-lg justify-center my-3">
-                <input type="checkbox" name="veg" id="veg" aria-checked color="#3AB757"  className="w-5 h-5 p-1 cursor-pointer border-2 border-gray-500 rounded-md"/><span > Veg only</span>
+                <input type="checkbox" name="veg" id="veg" aria-checked color="#3AB757" checked={checked} onChange={e=> setChecked(e.target.checked)} className="w-5 h-5 p-1 cursor-pointer border-2 border-gray-500 rounded-md"/><span > Veg only</span>
               </div>
             </div>
             <div className="element">
               {menuList?.length > 1
                 ? menuList?.map((items, index) => {
-                  // console.log(items);
+                  // console.log(items); 
                     return (
-                      <MenuList {...items} key={index} />
+                      <MenuList {...items} checked={checked} key={index} />
                     );
                   })
                 : null}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
 
 const RestaurantCard = (props) => {
+  // console.log(props);
 // const getSpecificRestro =()=>{
 // console.log(props._id);
 // }

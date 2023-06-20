@@ -6,10 +6,11 @@ const Router = express.Router();
 
 // get authorized user data
 
-Router.get("/", passport.authenticate("jwt",{session:false}), async (req, res) => {
-  try {
+Router.get("/",passport.authenticate("jwt",{session:false}), async (req, res) => {
+  try { 
     const { fullName, phoneNumber, email, address } = req.user;
-    return res.json({ user: { fullName, phoneNumber, email, address } });
+
+    return res.json({ user: { fullName, phoneNumber, email, address  } });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -19,7 +20,8 @@ Router.get("/", passport.authenticate("jwt",{session:false}), async (req, res) =
 Router.get("/:id", async (req, res) => {
   try {
     const { _id } = req.params;
-    const getUser = await UserModel.findById(_id);
+    const getUser = await UserModel.findOne(_id);
+    // console.log(getUser);
     const { fullName } = getUser;
     if (!getUser) {
      return res.status(404).json({ error: "User not found" });

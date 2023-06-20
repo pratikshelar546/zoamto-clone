@@ -6,6 +6,7 @@ const initialState ={
 };
 
 const menuReducer = (state = initialState, action)=>{
+    // console.log(action.payload);
     switch(action.type){
         case GET_MENU_LIST:
             return{

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SIGN_UP,SIGN_IN,GOOGLE_AUTH } from "./authType";
+import { SIGN_UP,SIGN_IN,GOOGLE_AUTH, SIGN_OUT } from "./authType";
 
 export const signIn = (userData)=>async(dispatch)=>{
     try {
@@ -37,12 +37,22 @@ export const signIn = (userData)=>async(dispatch)=>{
         axios.defaults.headers.common[
             "Authorization"
         ]=`Bearer ${User.data.token}`;
+        // console.log(User.data.user.fullName);
         return dispatch({type:SIGN_IN,payload:User.data});
     } catch (error) {
         alert("Login Faild please enter valid credentials");
         return dispatch({type:"ERROR", payload:error})
     }
  }
+export const signout = () =>async(dispatch)=>{
+    try {
+        localStorage.removeItem('newUser');
+        localStorage.removeItem('zomatoUser');
+        return dispatch({type:SIGN_OUT, payload:{}});
+    } catch (error) {
+        return dispatch({type:"ERROR", payload:error})
+    }
+}
 
 //  google auth
 export const googleAuth = (token)=>async(dispatch)=>{

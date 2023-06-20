@@ -2,7 +2,7 @@ import React from 'react'
 import Slider from "react-slick";
 import { NextArrow, PrevArrow } from './Arrow';
 import DeliveryCategoryCard from './DeliveryCategoryCard';
-const DeliveryCarousel = () => {
+const DeliveryCarousel = (props) => {
   const categories =[
     {
       image:
@@ -12,7 +12,7 @@ const DeliveryCarousel = () => {
     {
       image:
         "https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png",
-      title: "Pizza",
+      title: "pizza",
     },
     {
       image:
@@ -83,6 +83,9 @@ const DeliveryCarousel = () => {
       },
     ],
   };
+  const pullData=(data)=>{
+props.newData(data);
+  }
   return (
     <>
     <div className='p-5 bg-gray-50'>
@@ -91,7 +94,8 @@ const DeliveryCarousel = () => {
       </div>
       <Slider {...settingCast}>
         {categories.map((food,index)=>(
-           <DeliveryCategoryCard key={index} {...food} />
+          <DeliveryCategoryCard key={index} {...food} getData={pullData} />
+          // console.log(title) 
           )) }
           </Slider>
           </div>

@@ -6,7 +6,9 @@ import { Fragment } from "react";
 import { BsSearch } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 
-const FiltersButton = () => {
+const FiltersButton = (props) => {
+
+  console.log(props.title);
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -15,6 +17,9 @@ const FiltersButton = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+  const reload=()=>{
+    window.location.reload();
+  }
   return (
     <>
       {/* <hr className="border-2 border-gray-500 max-w-full  w-full"/> */}
@@ -36,10 +41,10 @@ const FiltersButton = () => {
                   onClick={openModal}
                   className="outline-none border-2 border-gray-300 px-3 py-1 flex h-full justify-center rounded-lg hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                 >
-                  <GiSettingsKnobs
+                  { props.title.length>0 ? <h1 className=" w-6 h-6 text-white mr-2 rounded bg-zomato-300"> 1</h1> : <GiSettingsKnobs
                     className="rotate-90 justify-centermt mt-1"
                     size={"1em"}
-                  />
+                  />}
                   Filters
                 </button>
               </div>
@@ -217,7 +222,9 @@ const FiltersButton = () => {
                   </div>
                 </Dialog>
               </Transition>
-
+                  {props.title.length>0 ?  <button className="outline-none border-2 text-white border-gray-300 bg-zomato-400 px-3 py-1 flex h-full justify-center rounded-lg hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75" onClick={reload}>
+                {props.title}<RxCross2 size={"1.5em"} />
+              </button>:null}
               <button className="outline-none border-2 border-gray-300 px-3 py-1 flex h-full justify-center rounded-lg hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                 Ration: 4.0+
               </button>

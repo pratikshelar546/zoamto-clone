@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tab } from "@headlessui/react";
 
 import FiltersButton from "./FiltersButton";
@@ -6,20 +6,27 @@ import DeliveryCarousel from "./Delivery/DeliveryCarousel";
 import TopBrandCaousel from "./Delivery/TopBrandCaousel";
 import Restraurant from "./Delivery/Restraurant";
 import Footer from "../home/Footer";
+import Index from "../DiningOut/Index";
+import Collections from "../DiningOut/Collections";
 
 
 
-const Tabs = () => {
-
+const Tabs = (props) => {
+  const [title,setTitle] = useState("")
+  const pullData =(data)=>{
+    setTitle(data);
+    // console.log(title);
+  }
+// console.log(props);
   return (
     <>
       <div className="flex w-full shadow justify-center ">
         {/* <div className="shadow flex"> */}
         <div className="flex border-0  max-w-7xl ml-9 w-full mt-10 h-20">
             <div className="flex flex-col w-full">
-          <Tab.Group >
-            <div className="">
-        <Tab.List as="div" className="flex flex-row gap-20  border-gray-400 h-20 ">
+          <Tab.Group defaultIndex={props.index}>
+            <div >
+        <Tab.List as="div" className="flex flex-row gap-20  border-gray-400 h-20" >
          <Tab as="h2" className="flex flex-row text-gray-600 focus:border-b-2 border-zomato-300 h-20  focus:text-zomato-300 outline-none ">
             <div>
               <img
@@ -56,12 +63,17 @@ const Tabs = () => {
        </div>
        
        <Tab.Panels>
-          <Tab.Panel><FiltersButton/>
-       <DeliveryCarousel/>  
+          <Tab.Panel>
+            <FiltersButton title={title}/>
+       <DeliveryCarousel newData={pullData}/>  
        <TopBrandCaousel/>  
-       <Restraurant/> </Tab.Panel>
-          <Tab.Panel>Content 2</Tab.Panel>
-          <Tab.Panel>Content 3</Tab.Panel>
+       <h1 className='text-xl mt-4 mb-2 ml-7 md:mt-8 md:text-3xl md:font-semibold'>
+    Order food online in Mumbai
+    </h1>
+       <Restraurant title={title} /> 
+       </Tab.Panel>
+          <Tab.Panel><Index/></Tab.Panel>
+          <Tab.Panel><Collections/></Tab.Panel>
          
         </Tab.Panels>
         <Footer/>

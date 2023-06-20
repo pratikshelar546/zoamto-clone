@@ -48,10 +48,7 @@ Router.post("/add", upload.single("images"), async (req, res) => {
           type: pic.type,
         });
       });
-      // console.log(`files ${req.files}...`);
-      // console.log(files);
-      // console.log("file uploades");
-      // return res.json({data:req.files})
+
     }
     // console.log(req.files.length);
     const {
@@ -101,6 +98,7 @@ Router.get("/:city", async (req, res) => {
     if (restaurants.length === 0) {
       return res.json({ error: "Restaurant not found in this city" });
     }
+    console.log( restaurants.cuisine);
     return res.status(200).json({ status: "success", restaurants });
   } catch (error) {
     return res.status(500).json({ status: "faild", error: error.message });

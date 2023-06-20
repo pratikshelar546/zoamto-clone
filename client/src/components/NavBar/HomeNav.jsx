@@ -1,21 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, {  useState } from "react";
+import { Link,  useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch,BiChevronDown } from "react-icons/bi";
 import Signin from "../Auth/Signin";
-import { useSelector } from "react-redux";
+
 import Login from "../Auth/Login";
+import { signout } from "../../redux/reducers/Auth/authAction";
+import { useDispatch } from "react-redux";
+import { clearUser } from "../../redux/reducers/User/UserAction";
+
+// import { getMySelf } from "../../redux/reducers/User/UserAction";
 
 
-const LgNav = ({ user, signIn, logIn }) => {
+const LgNav = ({ user, signIn,SignOut, logIn,isDropdown,setIsDropdown }) => {
+
+  const dispatch =useDispatch();
+
   const Signin = () => {
     signIn();
   };
   const Login = () => {
     logIn();
   };
+  const signOut =()=>{
+  
+    dispatch(signout());
+    dispatch(clearUser());
+  window.location.reload(false);
+    
+  }
   return (
     <div className="h-full hidden lg:flex">
       <section className="w-full min-h-1/4 bg-section-bg bg-white bg-cover bg-center px-24">
@@ -26,16 +41,36 @@ const LgNav = ({ user, signIn, logIn }) => {
           <div className="gap-10 text-2xl font-light  flex">
             <a href="/">Inventor relation</a>
             <a href="/">Add restaurant</a>
-            {user?.fullName ? (
+            <div className="flex  items-center gap-3 relative">
+            {user?.fullName?(
               <>
-                <a href="/">Logout</a>
+                <div className="relative cursor-pointer top-1" onClick={()=>setIsDropdown((prev)=>!prev)}> 
+                <div className="w-max">
+                  <div className="flex items-center justify-end max-w-xs">
+                    <span>{user.fullName}</span><BiChevronDown size={"1.2em"} className=" transform rotate-0"/>
+                  </div>
+                  {isDropdown &&(
+                        <div className="absolute top-12 right-0 z-10 w-36 bg-white rounded-lg overflow-hidden">
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center" onClick={signOut}>Signout</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Bookmark</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Notification</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Network</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Profile</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Settings</div>
+                      </div>
+                  )}
+                
+                </div>
+                </div>
               </>
+              
             ) : (
               <>
                 <button onClick={Login} >Login</button>
                 <button onClick={Signin}>Signup</button>
               </>
             )}
+            </div>
             <a href="/" className="w-5 h-10 justify-center lg:hidden">
               <FaUserCircle size={"1.5em"} />
             </a>
@@ -74,13 +109,22 @@ const LgNav = ({ user, signIn, logIn }) => {
   );
 };
 
-const MdNav = ({ user, signIn, logIn }) => {
+const MdNav = ({user, signIn,SignOut, logIn,isDropdown,setIsDropdown}) => {
+  const dispatch =useDispatch();
+  const navigate = useNavigate();
   const Signin = () => {
     signIn();
   };
   const Login = () => {
     logIn();
   };
+  const signOut =()=>{
+  
+    dispatch(signout());
+    dispatch(clearUser());
+  window.location.reload(false);
+    
+  }
   return (
     <>
       <div className="h-full max-sm:hidden lg:hidden">
@@ -91,16 +135,36 @@ const MdNav = ({ user, signIn, logIn }) => {
               <div className="gap-5 font-light decoration-none flex" >
               <a href="/">Inventor relation</a>
             <a href="/">Add restaurant</a>
-            {user?.fullName ? (
+            <div className="flex  items-center gap-3 relative">
+            {user?.fullName?(
               <>
-                <a href="/">Logout</a>
+                <div className="relative cursor-pointer top-1" onClick={()=>setIsDropdown((prev)=>!prev)}> 
+                <div className="w-max">
+                  <div className="flex items-center justify-end max-w-xs">
+                    <span>{user.fullName}</span><BiChevronDown size={"1.2em"} className=" transform rotate-0"/>
+                  </div>
+                  {isDropdown &&(
+                        <div className="absolute top-12 right-0 z-10 w-36 bg-white rounded-lg overflow-hidden">
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center" onClick={signOut}>Signout</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Bookmark</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Notification</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Network</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Profile</div>
+                        <div className="flex text-gray-700 p-3 text-lg items-center justify-center">Settings</div>
+                      </div>
+                  )}
+                
+                </div>
+                </div>
               </>
+             
             ) : (
               <>
                 <Link onClick={Login} >Login</Link>
                 <Link onClick={Signin}>Signup</Link>
                   </>
                 )}
+                </div>
                 <a href="/" className="w-5 h-10 lg:hidden">
                   <FaUserCircle className="sm:hidden" />
                 </a>
@@ -140,13 +204,22 @@ const MdNav = ({ user, signIn, logIn }) => {
     </>
   );
 };
-const SmNav = ({ user, signIn, logIn }) => {
+const SmNav = ({ user, signIn, logIn,isSideNav,setIsSideNav}) => {
+  const dispatch =useDispatch();
+  const navigate = useNavigate();
   const Signin = () => {
     signIn();
   };
   const Login = () => {
     logIn();
   };
+  const signOut =()=>{
+  
+    dispatch(signout());
+    dispatch(clearUser());
+  window.location.reload(false);
+    
+  }
   return (
     <>
       <div className="h-full flex sm:hidden">
@@ -162,7 +235,16 @@ const SmNav = ({ user, signIn, logIn }) => {
               </a>
               {user?.fullName ? (
                 <>
-                  <a href="/">Logout</a>
+                  <div className="w-5 h-10 flex flex-wrap" onClick={()=>setIsSideNav((prev)=>!prev)}>
+                <FaUserCircle size={"lg"} />
+              </div>
+             { isSideNav && (
+              <div className="relative justify-start left-0  w-64 h-screen  overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800">
+                <div className="flex text-white p-3 text-lg items-center justify-center">{user.fullName}</div>
+                <div className="flex text-white p-3 text-lg items-center justify-center" onClick={signOut}>Signout</div>
+                
+              </div>
+             )}
                 </>
               ) : (
                 <>
@@ -170,9 +252,7 @@ const SmNav = ({ user, signIn, logIn }) => {
                   <button onClick={Signin}>Signin</button>
                 </>
               )}
-              <a href="/" className="w-5 h-10 flex flex-wrap">
-                <FaUserCircle size={"lg"} />
-              </a>
+             
             </div>
           </header>
 
@@ -214,23 +294,39 @@ const SmNav = ({ user, signIn, logIn }) => {
   );
 };
 
-const HomeNav = () => {
-  const [openSignIn, setOpenSignIn] = useState(false);
-  const [openLogIn, setOpenLogIn] = useState(false);
+const HomeNav = (props) => {
 
-  const openSignInModal = () => setOpenSignIn(true);
-  const openLogInModal = () => setOpenLogIn(true);
+    const [openSignIn, setOpenSignIn] = useState(false);
+    const [openLogIn, setOpenLogIn] = useState(false);
+    const[isDropdown, setIsDropdown] = useState(false);
+    const [isSideNav,setIsSideNav] = useState(false);
+    // console.log(isDropdown);
+    const openSignInModal = () => setOpenSignIn(true);
+    const openLogInModal = () => setOpenLogIn(true);
+  const logOut =()=>{
+    
+  }
+  // const user = useSelector((globalState) => globalState.user);
+  // // console.log(user);
 
-  const user = useSelector((globalState) => globalState.user);
+  // if(user){
+  //   localStorage.setItem('userData' ,JSON.stringify(user) )
+  // }
+const user =JSON.parse(localStorage.getItem('newUser'));
+
+// console.log(user);
   return (
     <>
       <Signin isOpen={openSignIn} setIsOpen={setOpenSignIn} />
-      <Login isOpen={openLogIn} setIsOpen={setOpenLogIn} />
-      <LgNav user={user} signIn={openSignInModal} logIn={openLogInModal}/>
+      <Login isOpen={openLogIn}  setIsOpen={setOpenLogIn}  />
 
-      <MdNav user={user} signIn={openSignInModal} logIn={openLogInModal}/>
 
-      <SmNav user={user} signIn={openSignInModal} logIn={openLogInModal}/>
+
+      <LgNav user={user}  signIn={openSignInModal} setIsDropdown={setIsDropdown} isDropdown={isDropdown} signOut={logOut} logIn={openLogInModal}/>
+
+      <MdNav user={user} signIn={openSignInModal} setIsDropdown={setIsDropdown} isDropdown={isDropdown} logIn={openLogInModal}/>
+
+      <SmNav user={user} signIn={openSignInModal} isSideNav={isSideNav} setIsSideNav={setIsSideNav} logIn={openLogInModal}/>
     </>
   );
 };

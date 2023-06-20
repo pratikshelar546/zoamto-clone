@@ -1,0 +1,1 @@
+export const GET_FOOD_BY_CATEGORY = "get_food_by_category";

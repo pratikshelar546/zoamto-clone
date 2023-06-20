@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // const SmCard = ({ image, title }) => {
 //   return (
@@ -26,11 +26,18 @@ import React from "react";
 // };
 
 const DeliveryCategoryCard = (props) => {
+
+  const clickHandler =()=>{
+   
+    props.getData(props.title)
+  }
+  // console.log(title);
+  
   return (
     <>
   <>
       <div className="flex flex-col rounded-md w-full justify-center items-center">
-        <div className="w-36 h-auto justify-center ">
+        <div className="w-36 h-auto justify-center cursor-pointer" onClick={clickHandler}>
           <img
             className="w-full h-full object-center justify-center rounded-full"
             src={props.image}

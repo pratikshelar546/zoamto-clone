@@ -19,7 +19,7 @@ Router.put("/update/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
     const menu = req.body;
-    console.log(menu);
+    // console.log(menu);
     const newMenu = await MenuModel.findByIdAndUpdate(
       { _id: _id },
       { ...menu }

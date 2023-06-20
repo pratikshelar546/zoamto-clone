@@ -3,6 +3,7 @@ import Tabs from '../components/Restaurant/Tab'
 import RestaurantLayout from '../layouts/RestaurantLayout'
 
 const Restaurant= (props) => {
+
   return (
    <>
    <Tabs {...props} />
